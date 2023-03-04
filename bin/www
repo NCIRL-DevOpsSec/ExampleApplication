@@ -93,8 +93,8 @@ if (process.env.ENV !== "DEV") {
   // cert = header + "\n" + cert.replace(/ /g, "\n") + footer + "\n"
 
   var options = {
-    key: privatekey,
-    cert: cert
+    key: fs.readFileSync('privatekey.pem'),
+    cert: fs.readFileSync('server.crt')
   };
   app.set("port", https_port);
 
