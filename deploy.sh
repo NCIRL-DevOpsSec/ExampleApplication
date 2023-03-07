@@ -1,15 +1,14 @@
 #!/usr/bin/env bash 
 CURRENT_INSTANCE=$(docker ps -a -q --filter ancestor="$IMAGE_NAME" --format="{{.ID}}")
-
-if ["$CURRENT_INSTANCE"]
+if [ "$CURRENT_INSTANCE" ]
 then
   docker rm $(docker stop $CURRENT_INSTANCE)
 fi
 
 docker pull $IMAGE_NAME
-CONTAINER_EXISTS=$(docker ps -a | grep node_app)
 
-if ["$CONTAINER_EXISTS"] 
+CONTAINER_EXISTS=$(docker ps -a | grep node_app)
+if [ "$CONTAINER_EXISTS" ] 
 then
   docker rm node_app
 fi
